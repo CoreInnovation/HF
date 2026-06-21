@@ -265,7 +265,7 @@ var INV=[{"id":30171,"t":"Walkera Runner 250 Racer Runner 250-Z-01 Propellers Bl
  {title:'Unit Retail',field:'p',width:120,sorter:'number',hozAlign:'right',formatter:'money',formatterParams:money,responsive:3},
  {title:'Retail Value',field:'tp',width:112,sorter:'number',hozAlign:'right',formatter:'money',formatterParams:money,bottomCalc:'sum',bottomCalcFormatter:'money',bottomCalcFormatterParams:money0,responsive:1}
 ];
-  function build(){ table=new Tabulator('#invGrid',{data:INV,layout:'fitColumns',responsiveLayout:'collapse',responsiveLayoutCollapseStartOpen:false,height:'100%',rowHeight:58,placeholder:'No matching items',initialSort:[{column:'q',dir:'desc'}],columns:COLUMNS}); }
+  function build(){ table=new Tabulator('#invGrid',{data:INV,layout:'fitColumns',responsiveLayout:'collapse',responsiveLayoutCollapseStartOpen:false,height:'100%',placeholder:'No matching items',initialSort:[{column:'q',dir:'desc'}],columns:COLUMNS}); }
   function openModal(){modal.classList.add('open');document.body.style.overflow='hidden';if(!table){build();}else{setTimeout(function(){table.redraw(true);},40);}}
   function closeModal(){modal.classList.remove('open');document.body.style.overflow='';}
   openB.addEventListener('click',openModal);closeB.addEventListener('click',closeModal);
