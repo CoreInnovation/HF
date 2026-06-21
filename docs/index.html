@@ -69,6 +69,20 @@
   .cat-search{ margin:12px 20px 8px; padding:10px 14px; border:1px solid #cdd8e3; border-radius:8px; font-size:14px; }
   #invGrid{ flex:1; min-height:0; margin:0 16px 16px; }
   .tabulator{ font-size:13px; }
+  /* Mobile: full-screen modal + reclaim width for the grid */
+  @media(max-width:680px){
+    .cat-overlay{ padding:0; }
+    .cat-box{ width:100vw; max-width:none; height:100vh; height:100dvh; border-radius:0; }
+    .cat-head{ padding:12px 14px; } .cat-head h2{ font-size:16px; } .cat-head p{ font-size:11px; }
+    .cat-search{ margin:10px 12px 6px; }
+    #invGrid{ margin:0 8px 10px; }
+    .tabulator{ font-size:12px; }
+  }
+  /* Per-row expand (collapsed columns) detail list on narrow screens */
+  .tabulator-responsive-collapse{ padding:8px 12px; background:#f7f9fb; border-top:1px solid var(--line); }
+  .tabulator-responsive-collapse table{ width:100%; }
+  .tabulator-responsive-collapse table td{ padding:4px 6px; font-size:12.5px; vertical-align:top; }
+  .tabulator-responsive-collapse table td:first-child{ font-weight:700; color:var(--muted); width:42%; }
 </style>
 <link href="https://cdn.jsdelivr.net/npm/tabulator-tables@6/dist/css/tabulator.min.css" rel="stylesheet">
 </head>
@@ -243,14 +257,15 @@ var INV=[{"id":30171,"t":"Walkera Runner 250 Racer Runner 250-Z-01 Propellers Bl
   function prFmt(c){var v=Number(c.getValue());var s='$'+v.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});return '<span style="color:'+(v<0?'#c8102e':'#15202b')+'">'+s+'</span>';}
   var money={symbol:'$',precision:2},money0={symbol:'$',precision:0};
   var COLUMNS=[
- {title:'Photo',field:'i',headerSort:false,width:92,hozAlign:'center',formatter:imgFmt,cellClick:function(e,cell){openViewer(cell.getRow().getData());}},
- {title:'ID',field:'id',width:100,sorter:'number',hozAlign:'right',headerFilter:'input',headerFilterPlaceholder:'ID #'},
- {title:'Item',field:'t',minWidth:260,widthGrow:5,sorter:'string',headerFilter:'input',formatter:titleFmt},
- {title:'Qty in Stock',field:'q',width:120,sorter:'number',hozAlign:'right'},
- {title:'Unit Retail',field:'p',width:120,sorter:'number',hozAlign:'right',formatter:'money',formatterParams:money},
- {title:'Retail Value',field:'tp',width:140,sorter:'number',hozAlign:'right',formatter:'money',formatterParams:money,bottomCalc:'sum',bottomCalcFormatter:'money',bottomCalcFormatterParams:money0}
+ {formatter:'responsiveCollapse',width:34,minWidth:34,widthShrink:0,hozAlign:'center',resizable:false,headerSort:false},
+ {title:'Photo',field:'i',headerSort:false,width:76,hozAlign:'center',formatter:imgFmt,responsive:0,cellClick:function(e,cell){openViewer(cell.getRow().getData());}},
+ {title:'ID',field:'id',width:100,sorter:'number',hozAlign:'right',headerFilter:'input',headerFilterPlaceholder:'ID #',responsive:4},
+ {title:'Item',field:'t',minWidth:110,widthGrow:5,sorter:'string',headerFilter:'input',formatter:titleFmt,responsive:0},
+ {title:'Qty in Stock',field:'q',width:120,sorter:'number',hozAlign:'right',responsive:2},
+ {title:'Unit Retail',field:'p',width:120,sorter:'number',hozAlign:'right',formatter:'money',formatterParams:money,responsive:3},
+ {title:'Retail Value',field:'tp',width:112,sorter:'number',hozAlign:'right',formatter:'money',formatterParams:money,bottomCalc:'sum',bottomCalcFormatter:'money',bottomCalcFormatterParams:money0,responsive:1}
 ];
-  function build(){ table=new Tabulator('#invGrid',{data:INV,layout:'fitColumns',height:'100%',rowHeight:58,placeholder:'No matching items',initialSort:[{column:'q',dir:'desc'}],columns:COLUMNS}); }
+  function build(){ table=new Tabulator('#invGrid',{data:INV,layout:'fitColumns',responsiveLayout:'collapse',responsiveLayoutCollapseStartOpen:false,height:'100%',rowHeight:58,placeholder:'No matching items',initialSort:[{column:'q',dir:'desc'}],columns:COLUMNS}); }
   function openModal(){modal.classList.add('open');document.body.style.overflow='hidden';if(!table){build();}else{setTimeout(function(){table.redraw(true);},40);}}
   function closeModal(){modal.classList.remove('open');document.body.style.overflow='';}
   openB.addEventListener('click',openModal);closeB.addEventListener('click',closeModal);
