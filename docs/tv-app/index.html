@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TV_APP</title>
+<meta name="description" content="TV_APP — scan a movie or show on your screen and get its real ratings instantly.">
+<style>
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{ margin:0; font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+        background:radial-gradient(1200px 600px at 50% -10%,#16324a,#0a0f17 60%); color:#e8eef5;
+        display:flex; align-items:center; justify-content:center; min-height:100%; padding:24px; }
+  .card{ width:100%; max-width:540px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10);
+         border-radius:18px; padding:48px 40px; text-align:center; box-shadow:0 30px 80px rgba(0,0,0,.45);
+         backdrop-filter:blur(6px); }
+  .logo{ font-size:46px; line-height:1; margin-bottom:18px; }
+  h1{ margin:0; font-size:48px; letter-spacing:.04em; font-weight:800;
+      background:linear-gradient(90deg,#5ad1ff,#7ee0a1); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .tag{ margin:14px 0 0; font-size:17px; color:#aebfd0; line-height:1.5; }
+  .pills{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:26px 0 4px; }
+  .pill{ font-size:13px; color:#cfe0f0; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+         border-radius:999px; padding:6px 13px; }
+  .foot{ margin-top:30px; padding-top:18px; border-top:1px solid rgba(255,255,255,.08);
+         font-size:12px; color:#8499ad; line-height:1.6; }
+  .foot a{ color:#7fc4ff; text-decoration:none; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="logo">🎬⭐</div>
+    <h1>TV_APP</h1>
+    <p class="tag">Point your device at any streaming or TV screen and instantly pull the real ratings for the movie or show you're looking at.</p>
+    <div class="pills">
+      <span class="pill">📷 On-screen recognition</span>
+      <span class="pill">⭐ Aggregated ratings</span>
+      <span class="pill">🖥️ Desktop application</span>
+    </div>
+    <div class="foot">
+      A personal desktop application by Chris.<br>
+      This product uses the TMDB API but is not endorsed or certified by
+      <a href="https://www.themoviedb.org/" rel="noopener">TMDB</a>.
+    </div>
+  </main>
+</body>
+</html>
